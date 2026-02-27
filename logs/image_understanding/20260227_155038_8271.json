@@ -1,0 +1,63 @@
+{
+  "timestamp": "2026-02-27T15:50:38.271868",
+  "service": "image_understanding",
+  "model": "qwen-vl-max",
+  "request": {
+    "model": "qwen-vl-max",
+    "messages": [
+      {
+        "role": "user",
+        "content": [
+          {
+            "image": "https://dashscope.oss-cn-beijing.aliyuncs.com/images/dog_and_girl.jpeg"
+          },
+          {
+            "text": "请详细描述这张图片的内容。"
+          }
+        ]
+      }
+    ]
+  },
+  "response": {
+    "status_code": 200,
+    "request_id": "1d4dfc0d-c2b7-4373-84f9-488ea4f85343",
+    "code": "",
+    "message": "",
+    "output": {
+      "text": null,
+      "finish_reason": null,
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "message": {
+            "role": "assistant",
+            "content": [
+              {
+                "text": "这张图片展现了一幅温暖而宁静的海滩场景，拍摄时间似乎是在日出或日落时分，阳光柔和地洒在沙滩上，营造出一种温馨、放松的氛围。\n\n画面中央是一位年轻女性和一只金毛犬坐在沙滩上，彼此互动。女性面带微笑，侧身面向狗狗，她穿着一件黑白格子衬衫，搭配深色裤子，脚上没有穿鞋，显得非常自然和放松。她的右手轻轻抬起，与狗狗的前爪相触，仿佛在进行“击掌”或握手的动作，表现出亲密和默契。她的左手拿着一小块食物，可能是狗粮或零食，准备奖励狗狗。\n\n狗狗是一只体型较大的金毛寻回犬，毛色为浅金色，看起来健康且温顺。它戴着一条带有彩色图案的项圈和背带式牵引绳，牵引绳的一端放在沙地上。狗狗正用前爪与女性的手接触，身体微微前倾，眼神专注地看着她，展现出友好和期待的神情。\n\n背景是广阔的海洋，海浪轻柔地拍打着沙滩，水面在夕阳的映照下泛着淡淡的金光。天空呈现出淡黄色到白色的渐变色调，整体光线明亮但不刺眼，为画面增添了一种梦幻般的美感。\n\n整个画面传达出人与宠物之间深厚的情感联系，以及在大自然中享受宁静时光的愉悦心情。构图简洁，重点突出人物和动物之间的互动，令人感受到和谐与幸福。"
+              }
+            ],
+            "reasoning_content": ""
+          }
+        }
+      ],
+      "audio": null
+    },
+    "usage": {
+      "input_tokens": 1264,
+      "output_tokens": 309,
+      "characters": 0,
+      "input_tokens_details": {
+        "image_tokens": 1249,
+        "text_tokens": 15
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1573,
+      "output_tokens_details": {
+        "text_tokens": 309
+      },
+      "image_tokens": 1249
+    }
+  }
+}
