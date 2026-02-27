@@ -13,7 +13,12 @@ from services.image_understanding import (
     understand_image_base64,
     understand_image_openai_base64,
 )
-from services.audio_understanding import understand_audio, understand_audio_openai
+from services.audio_understanding import (
+    understand_audio,
+    understand_audio_openai,
+    understand_audio_base64,
+    understand_audio_openai_base64,
+)
 from services.image_generation import generate_image
 from services.speech_synthesis import synthesize_speech
 
@@ -100,6 +105,40 @@ def demo_audio_understanding_openai():
     print(f"描述: {result}")
 
 
+def demo_audio_understanding_dashscope_base64():
+    """音频理解 — DashScope base64 格式"""
+    print("\n" + "=" * 60)
+    print("🎵  音频理解 — DashScope base64 格式")
+    print("=" * 60)
+    import os, config
+    audio_path = input("请输入本地音频路径 (默认 input/test.mp3): ").strip()
+    if not audio_path:
+        audio_path = os.path.join(config.INPUT_DIR, "test.mp3")
+    if not os.path.exists(audio_path):
+        print(f"❌ 文件不存在: {audio_path}")
+        return
+    result = understand_audio_base64(audio_path, "这段音频说了什么？")
+    print(f"\n音频: {audio_path}")
+    print(f"描述: {result}")
+
+
+def demo_audio_understanding_openai_base64():
+    """音频理解 — OpenAI base64 格式"""
+    print("\n" + "=" * 60)
+    print("🎵  音频理解 — OpenAI base64 格式")
+    print("=" * 60)
+    import os, config
+    audio_path = input("请输入本地音频路径 (默认 input/test.mp3): ").strip()
+    if not audio_path:
+        audio_path = os.path.join(config.INPUT_DIR, "test.mp3")
+    if not os.path.exists(audio_path):
+        print(f"❌ 文件不存在: {audio_path}")
+        return
+    result = understand_audio_openai_base64(audio_path, "这段音频说了什么？")
+    print(f"\n音频: {audio_path}")
+    print(f"描述: {result}")
+
+
 # ===================== 图像生成 & 语音合成 =====================
 
 def demo_image_generation():
@@ -142,6 +181,9 @@ def main():
     print("  2a. 音频理解 — DashScope 格式")
     print("  2b. 音频理解 — OpenAI 兼容格式")
     print("  2c. 音频理解 — 两种格式对比运行")
+    print("  2d. 音频理解 — DashScope base64 格式")
+    print("  2e. 音频理解 — OpenAI base64 格式")
+    print("  2f. 音频理解 — base64 两种格式对比运行")
     print()
     print("  --- 仅 DashScope 格式 ---")
     print("  3.  图像生成")
@@ -158,6 +200,8 @@ def main():
         "1e": ("图像理解(OpenAI-base64)", demo_image_understanding_openai_base64),
         "2a": ("音频理解(DashScope)", demo_audio_understanding_dashscope),
         "2b": ("音频理解(OpenAI)", demo_audio_understanding_openai),
+        "2d": ("音频理解(DashScope-base64)", demo_audio_understanding_dashscope_base64),
+        "2e": ("音频理解(OpenAI-base64)", demo_audio_understanding_openai_base64),
         "3": ("图像生成", demo_image_generation),
         "4": ("语音合成", demo_speech_synthesis),
     }
@@ -169,6 +213,8 @@ def main():
                ("图像理解(OpenAI-base64)", demo_image_understanding_openai_base64)],
         "2c": [("音频理解(DashScope)", demo_audio_understanding_dashscope),
                ("音频理解(OpenAI)", demo_audio_understanding_openai)],
+        "2f": [("音频理解(DashScope-base64)", demo_audio_understanding_dashscope_base64),
+               ("音频理解(OpenAI-base64)", demo_audio_understanding_openai_base64)],
     }
 
     while True:

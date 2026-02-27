@@ -20,7 +20,7 @@ OPENAI_BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
 IMAGE_UNDERSTANDING_MODEL = "qwen-vl-max"
 
 # 音频理解模型
-AUDIO_UNDERSTANDING_MODEL = "qwen-audio-turbo"
+AUDIO_UNDERSTANDING_MODEL = "qwen3-omni-flash"
 
 # 图像生成模型
 IMAGE_GENERATION_MODEL = "wanx2.1-t2i-turbo"

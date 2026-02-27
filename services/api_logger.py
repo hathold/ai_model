@@ -85,7 +85,7 @@ def log_api_call(
 
     # 按服务分子目录
     service_dir = LOG_DIR / service
-    service_dir.mkdir(exist_ok=True)
+    service_dir.mkdir(parents=True, exist_ok=True)
 
     file_name = f"{timestamp}_{ts_ms}.json"
     file_path = service_dir / file_name
@@ -136,7 +136,7 @@ def log_stream_api_call(
         log_entry["extra"] = _make_serializable(extra)
 
     service_dir = LOG_DIR / service
-    service_dir.mkdir(exist_ok=True)
+    service_dir.mkdir(parents=True, exist_ok=True)
 
     file_name = f"{timestamp}_{ts_ms}_stream.json"
     file_path = service_dir / file_name
