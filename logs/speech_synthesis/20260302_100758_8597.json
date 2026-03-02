@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-03-02T10:07:58.597272",
+  "service": "speech_synthesis",
+  "model": "cosyvoice-v1",
+  "request": {
+    "model": "cosyvoice-v1",
+    "voice": "longxiaochun",
+    "text": "你好，我是通义千问语音合成服务。今天天气真不错，一起出去走走吧！"
+  },
+  "response": {
+    "status": "success",
+    "audio_size_bytes": 80711,
+    "output_file": "e:\\code\\ai_model\\output\\speech_output.mp3"
+  }
+}

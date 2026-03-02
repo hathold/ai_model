@@ -1,0 +1,40 @@
+{
+  "timestamp": "2026-03-02T09:07:07.148169",
+  "service": "image_generation",
+  "model": "wanx2.1-t2i-turbo",
+  "request": {
+    "model": "wanx2.1-t2i-turbo",
+    "prompt": "一只可爱的橘猫坐在窗台上，阳光洒在身上，水彩画风格",
+    "negative_prompt": "",
+    "n": 1,
+    "size": "1024*1024"
+  },
+  "response": {
+    "status_code": 200,
+    "request_id": "9d24183c-6835-4208-9234-1daac9443628",
+    "code": null,
+    "message": "",
+    "output": {
+      "task_id": "15cd4645-0f0d-42e8-b561-668c95c31007",
+      "task_status": "SUCCEEDED",
+      "results": [
+        {
+          "url": "https://dashscope-result-wlcb-acdr-1.oss-cn-wulanchabu-acdr-1.aliyuncs.com/1d/56/20260302/77c9ad12/15cd4645-0f0d-42e8-b561-668c95c31007543654212.png?Expires=1772500021&OSSAccessKeyId=LTAI5tKPD3TMqf2Lna1fASuh&Signature=3W0VKLwnUT2b7N5wxMEKbFdG%2F4M%3D",
+          "orig_prompt": "一只可爱的橘猫坐在窗台上，阳光洒在身上，水彩画风格",
+          "actual_prompt": "水彩手绘风格插画，一只圆润可爱的橘猫蜷坐在木质窗台上，毛发蓬松柔软，阳光透过玻璃窗在它身上投下温暖光斑与细腻投影。窗外可见朦胧的绿植与淡蓝色天空，窗框边缘略带水彩晕染质感。画面柔和清新，留白自然，中景偏右构图，色调以暖橘、浅金与灰蓝为主。"
+        }
+      ],
+      "submit_time": "2026-03-02 09:06:54.708",
+      "scheduled_time": "2026-03-02 09:06:54.739",
+      "end_time": "2026-03-02 09:07:02.269",
+      "task_metrics": {
+        "TOTAL": 1,
+        "SUCCEEDED": 1,
+        "FAILED": 0
+      }
+    },
+    "usage": {
+      "image_count": 1
+    }
+  }
+}

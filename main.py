@@ -6,6 +6,7 @@
   2. 音频理解 (Qwen-Audio)     — DashScope / OpenAI 双格式
   3. 图像生成 (通义万相)        — 仅 DashScope
   4. 语音合成 (CosyVoice)      — 仅 DashScope
+  5. 语音合成 (Qwen-TTS)       — 支持 URL / base64 返回
 """
 from services.image_understanding import (
     understand_image,
@@ -21,6 +22,10 @@ from services.audio_understanding import (
 )
 from services.image_generation import generate_image
 from services.speech_synthesis import synthesize_speech
+from services.speech_synthesis_qwen import (
+    synthesize_speech_qwen,
+    synthesize_speech_qwen_base64,
+)
 
 
 # ===================== 图像理解 =====================
@@ -154,14 +159,43 @@ def demo_image_generation():
 
 
 def demo_speech_synthesis():
-    """语音合成（仅 DashScope）"""
+    """语音合成 CosyVoice（仅 DashScope）"""
     print("\n" + "=" * 60)
-    print("🔊  语音合成 — DashScope（无 OpenAI 兼容接口）")
+    print("🔊  语音合成 — CosyVoice（返回二进制音频）")
     print("=" * 60)
     text = "你好，我是通义千问语音合成服务。今天天气真不错，一起出去走走吧！"
     path = synthesize_speech(text=text)
     print(f"\n文本: {text}")
     print(f"语音文件: {path}")
+
+
+def demo_speech_synthesis_qwen_url():
+    """Qwen-TTS 语音合成 — 返回 URL"""
+    print("\n" + "=" * 60)
+    print("🔊  语音合成 — Qwen-TTS（返回音频 URL）")
+    print("=" * 60)
+    text = "你好，我是千问语音合成服务。今天天气真不错，一起出去走走吧！"
+    result = synthesize_speech_qwen(text=text)
+    print(f"\n文本: {text}")
+    print(f"音频 URL: {result.get('url')}")
+
+
+def demo_speech_synthesis_qwen_base64():
+    """Qwen-TTS 语音合成 — 返回 base64"""
+    print("\n" + "=" * 60)
+    print("🔊  语音合成 — Qwen-TTS（返回 base64 音频数据）")
+    print("=" * 60)
+    import config
+    text = "你好，我是千问语音合成服务。今天天气真不错，一起出去走走吧！"
+    result = synthesize_speech_qwen_base64(
+        text=text,
+        output_file=str(config.OUTPUT_DIR / "qwen_tts_base64_output.wav"),
+    )
+    print(f"\n文本: {text}")
+    print(f"base64 前100字符: {result.get('audio_base64', '')[:100]}...")
+    print(f"音频大小: {result.get('audio_size_bytes')} bytes")
+    if result.get('output_file'):
+        print(f"已保存到: {result['output_file']}")
 
 
 def main():
@@ -187,9 +221,13 @@ def main():
     print()
     print("  --- 仅 DashScope 格式 ---")
     print("  3.  图像生成")
-    print("  4.  语音合成")
+    print("  4.  语音合成 — CosyVoice")
     print()
-    print("  5.  运行全部")
+    print("  --- 语音合成 Qwen-TTS (支持 base64) ---")
+    print("  5a. 语音合成 — Qwen-TTS（返回 URL）")
+    print("  5b. 语音合成 — Qwen-TTS（返回 base64）")
+    print()
+    print("  9.  运行全部")
     print("  0.  退出")
     print("=" * 60)
 
@@ -203,7 +241,9 @@ def main():
         "2d": ("音频理解(DashScope-base64)", demo_audio_understanding_dashscope_base64),
         "2e": ("音频理解(OpenAI-base64)", demo_audio_understanding_openai_base64),
         "3": ("图像生成", demo_image_generation),
-        "4": ("语音合成", demo_speech_synthesis),
+        "4": ("语音合成(CosyVoice)", demo_speech_synthesis),
+        "5a": ("语音合成(Qwen-TTS-URL)", demo_speech_synthesis_qwen_url),
+        "5b": ("语音合成(Qwen-TTS-base64)", demo_speech_synthesis_qwen_base64),
     }
 
     compare_groups = {
@@ -223,7 +263,7 @@ def main():
         if choice == "0":
             print("再见！")
             break
-        elif choice == "5":
+        elif choice == "9":
             for name, func in demos.values():
                 try:
                     func()

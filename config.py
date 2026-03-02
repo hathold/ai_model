@@ -25,10 +25,15 @@ AUDIO_UNDERSTANDING_MODEL = "qwen3-omni-flash"
 # 图像生成模型
 IMAGE_GENERATION_MODEL = "wanx2.1-t2i-turbo"
 
-# 语音合成模型
+# 语音合成模型 (CosyVoice)
 SPEECH_SYNTHESIS_MODEL = "cosyvoice-v1"
 # 语音合成 - 发音人 (可选: longxiaochun, longhua, longshuo 等)
 SPEECH_SYNTHESIS_VOICE = "longxiaochun"
+
+# 语音合成模型 (Qwen-TTS) — 支持 base64 返回
+QWEN_TTS_MODEL = "qwen3-tts-flash"
+# Qwen-TTS 发音人 (可选: Cherry, Ethan, Serena, Chelsie 等)
+QWEN_TTS_VOICE = "Cherry"
 
 # ======================== 路径配置 ========================
 BASE_DIR = Path(__file__).parent
